@@ -1,0 +1,74 @@
+﻿@model SearchEngine.Models.User
+@{
+    ViewBag.Title = "Index";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/StyleSheet/Styles.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>Search Engine</title>
+</head>
+<body>
+    <div id="login-div">
+        @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+        {
+            <div class="panel-i">
+                <div class="modal-body">
+
+                    <table>
+                        <tr><th><span class="glyphicon glyphicon-user"></span> Log in</th></tr>
+                        <tr>
+                            <td>
+                                @Html.EditorFor(model => model.UserName, new
+                                {
+                                    htmlAttributes = new
+                                    {
+                                        @class = "form-control input-md",
+@placeholder = "Username"
+                                    }
+                                })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@Html.ValidationMessageFor(model => model.UserName)</td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                @Html.EditorFor(model => model.Password, new
+                                {
+                                    htmlAttributes = new
+                                    {
+                                        @class = "form-control input-md",
+@placeholder = "Password"
+                                    }
+                                })
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>@Html.ValidationMessageFor(model => model.Password)</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => model.LoginErrorMessage)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" name="name" value="Login" class="btn btn-success" />
+                                <input type="reset" name="name" value="Clear" class="btn btn-success" />
+                            </td>
+                        </tr>                      
+                   </table>
+                </div>
+            </div>
+        }
+    </div>
+    <script src="~/Scripts/jquery.validate.js"></script>
+</body>
+</html>

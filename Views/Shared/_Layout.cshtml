@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title  Search Engine</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>         
+    <partial name="_CookieConsentPartial" />
+    <div class="container body-content">
+        <div class="container">
+            <div>
+                @Html.ActionLink("Search Engine", "Index", "LogIn", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+        </div>
+        @RenderBody()
+        <footer>
+
+            <p>&copy; @DateTime.Now.Year - All rights reserved</p>
+        </footer>
+    </div>
+  
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

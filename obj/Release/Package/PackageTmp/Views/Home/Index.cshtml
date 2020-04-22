@@ -1,0 +1,105 @@
+﻿@model SearchEngine.Models.RecordsModel
+@{
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/LogIn/Index");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/StyleSheet/Styles.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" initial-scale=1.0 />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js">//pass data to the controller asynchronously without whole page refresh</script>
+    <title>Index</title>
+</head>
+<body>
+    <div id="LogOut">
+        <h3>Welcome: @Session["userName"].ToString()</h3>
+        <a href="@Url.Action("LogOut","Login")">Log Out</a>
+    </div>
+    <div id="wrapper-search">
+        <div id="container-search">
+            <div id="image-search"><img src="~/Images/Glasss.png" /></div>
+
+            @using (Ajax.BeginForm("Index", "Home", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "container-search-query" }))
+            {
+                <div id="container-search-query">
+
+                    @Html.AntiForgeryToken()
+
+                    @Html.EditorFor(model => model.Record, new
+                {
+
+                   htmlAttributes = new
+                   {
+                       @id = "q",
+                       @class = "form-control ",
+                       @placeholder = "Look around!",
+
+                   }
+                })
+                    <input type="submit" id="button-search" value="Submit" class="form-control btn-success" />
+                </div>
+                <div id="error-search">@Html.ValidationMessageFor(model => model.Record)</div>
+            }
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript">
+
+        function SiteSearch() {
+            document.location.href = "/Home/Index?q=" +
+                EncodeText(document.getElementById('q').value);  // Here we should use url encode for the user input
+        }
+
+        function EncodeText(value) {
+            var returnValue = "";
+            var x = 0;
+            var regex = /(^[a-zA-Z0-9_.]*)/
+            while (x < value.toString().length) {
+                var match = regex.exec(value.substr(x));
+                if (match != null && match.length > 1 && match[1] != '') {
+                    returnValue += match[1];
+                    x += match[1].length;
+                }
+                else {
+                    if (value[x] == ' ') {
+                        returnValue += '+';
+                    }
+                    else {
+                        var charCode = value.charCodeAt(x);
+                        var haxValue = charCode.toString(16);
+                        returnValue += "%" + (haxValue.length < 2 ? '0' : '') + haxValue.toUpperCase();
+                    }
+                    x++;
+                }
+            }
+            return returnValue;
+        }
+        (function () {
+            var cx = '004190376073915964254:jgkqwbmrfpe';  //cx: The identifier of the custom search engine. json api key
+            var gcse = document.createElement('script');
+            gcse.type = 'text/javascript';
+            gcse.async = true;
+            gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                '//www.google.com/cse/cse.js?cx=' + cx;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(gcse, s);
+        })();
+    </script>
+
+    @if (ViewBag.JavaScriptFunction != null)
+    {
+        <script type="text/javascript">
+            @Html.Raw(ViewBag.JavaScriptFunction)
+        </script>
+    }
+    <gcse:searchresults-only></gcse:searchresults-only>
+
+</body>
+</html>
