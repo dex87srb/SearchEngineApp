@@ -10,7 +10,4 @@ Development website: http://searchengineapp.azurewebsites.net/
 Instructions on how to use and launch application in MS Visual Studio:
 IIS Express launch on main page route which is LogIn/Index, credentials for accessing search page are given for a three users.
 
-Username:   Password:
-Danijel     loudnes
-Milos       loudness
-Stefan      loudness
+Username: Danijel, Milos, Stefan     Password:  loudnes, loudness, loudness   
