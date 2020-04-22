@@ -12,11 +12,7 @@ namespace SearchEngine.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            AccountEntities db = new AccountEntities();
-
-            List<Record> list = db.Records.ToList();
-
-            ViewBag.RecordList = new SelectList(list, "Id", "RecordQuery");
+           
 
             return View();
         }
