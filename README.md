@@ -3,7 +3,7 @@ Simple app that uses google custom search api with the functionality that stores
 
 Technologies/Environment/Tools;
 This project was made in ASP.NET MVC 5 Framework using MS Visual Studio 2019 environment and Entity Framework 5.
-Relational database( one to many relation) has been generated with SQL Server Management Studio 2012.
+Relational database (one to many relation) has been generated with SQL Server Management Studio 2012.
 
 Development website: http://searchengineapp.azurewebsites.net/
 
