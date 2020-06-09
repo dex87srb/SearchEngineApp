@@ -1,5 +1,5 @@
 # SearchEngineApp
-Simple app that uses google custom search api with the functionality that stores search query;
+Application that uses google custom search api with the functionality that stores search query;
 
 Technologies/Environment/Tools;
 This project was made in ASP.NET MVC 5 Framework using MS Visual Studio 2019 environment and Entity Framework 5.
